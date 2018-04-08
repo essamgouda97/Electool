@@ -1,0 +1,4 @@
+1- Scientific calculator
+2- K-map solver
+3- Resistor colour code
+4- components database
