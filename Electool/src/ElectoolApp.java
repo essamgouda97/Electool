@@ -29,9 +29,9 @@ public class ElectoolApp extends javax.swing.JApplet {
     int bandChosen = 0;
     //int test = 2;
     int[] value = {0,1,2,3,4,5,6,7,8,9};
-    double[] tol = {1,2,0.5,0.25,0.1,0.05,5,10,20};
+    double[] tol = {0,2,0.5,0,0,0.25,0.1,0.05,5,0,10,20};
     double[] mult = {1,10,100,1000,10000,100000,1000000,10000000,100000000,1000000000,0.1,0.01};
-    double[] fail = {1,0.1,0.01,0.001};
+    double[] fail = {0,1,0.1,0.01,0.001};
     
     //Calculator variables
     double firstnum;
@@ -353,8 +353,8 @@ public class ElectoolApp extends javax.swing.JApplet {
         white33 = new javax.swing.JButton();
         gold33 = new javax.swing.JButton();
         silver33 = new javax.swing.JButton();
-        text = new javax.swing.JLabel();
         jlblValue = new javax.swing.JLabel();
+        text = new javax.swing.JLabel();
         symbol = new javax.swing.JLabel();
         tolerance = new javax.swing.JLabel();
         text2 = new javax.swing.JLabel();
@@ -2798,25 +2798,37 @@ public class ElectoolApp extends javax.swing.JApplet {
 
         ResCol.add(ColoursPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, 670, 800));
 
-        text.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        text.setText("Resistor Value:");
-        ResCol.add(text, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 90, -1, -1));
-
+        jlblValue.setBackground(new java.awt.Color(255, 255, 255));
         jlblValue.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jlblValue.setForeground(new java.awt.Color(255, 255, 255));
         jlblValue.setText("jLabel1");
         ResCol.add(jlblValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 120, 70, 40));
 
+        text.setBackground(new java.awt.Color(255, 255, 255));
+        text.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        text.setForeground(new java.awt.Color(255, 255, 255));
+        text.setText("Resistor Value:");
+        ResCol.add(text, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 90, -1, -1));
+
+        symbol.setBackground(new java.awt.Color(255, 255, 255));
         symbol.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        symbol.setForeground(new java.awt.Color(255, 255, 255));
         symbol.setText("Ω  ± ");
         ResCol.add(symbol, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 120, -1, 40));
 
+        tolerance.setBackground(new java.awt.Color(255, 255, 255));
         tolerance.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        tolerance.setForeground(new java.awt.Color(255, 255, 255));
         tolerance.setText("jLabel1");
         ResCol.add(tolerance, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 120, -1, 40));
 
+        text2.setBackground(new java.awt.Color(255, 255, 255));
+        text2.setForeground(new java.awt.Color(255, 255, 255));
         text2.setText("fail rate = ");
         ResCol.add(text2, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 160, 70, 20));
 
+        failR.setBackground(new java.awt.Color(255, 255, 255));
+        failR.setForeground(new java.awt.Color(255, 255, 255));
         failR.setText("jLabel2");
         ResCol.add(failR, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 160, -1, 20));
 
@@ -4859,8 +4871,8 @@ public class ElectoolApp extends javax.swing.JApplet {
         int thirdDig;
         double multDig;
         double tolDig;
-        double failDig;
-        int finalValue;
+        double failDig = 0;
+        double finalValue;
         
         jlblValue.setText("");
         tolerance.setText("");
@@ -4874,7 +4886,7 @@ public class ElectoolApp extends javax.swing.JApplet {
             multDig = mult[Arrays.asList(colors).indexOf(Band5.getBackground())];
             tolDig = 20;
             
-            finalValue = (int)(java.lang.Integer.parseInt("" + firstDig + secondDig) * multDig);
+            finalValue = Math.round((double)(java.lang.Integer.parseInt("" + firstDig + secondDig) * multDig));
             
             //System.out.println(finalValue);
 
@@ -4884,7 +4896,7 @@ public class ElectoolApp extends javax.swing.JApplet {
             multDig = mult[Arrays.asList(colors).indexOf(Band4.getBackground())];
             tolDig = tol[Arrays.asList(colors).indexOf(Band5.getBackground())];
             
-            finalValue = (int)(java.lang.Integer.parseInt("" + firstDig + secondDig) * multDig);
+            finalValue = Math.round((double)(java.lang.Integer.parseInt("" + firstDig + secondDig) * multDig));
             
         }else if(bandChosen == 5){
             firstDig = value[Arrays.asList(colors).indexOf(Band1.getBackground())];
@@ -4893,7 +4905,7 @@ public class ElectoolApp extends javax.swing.JApplet {
             multDig = mult[Arrays.asList(colors).indexOf(Band4.getBackground())];
             tolDig = tol[Arrays.asList(colors).indexOf(Band5.getBackground())];
             
-             finalValue = (int)(java.lang.Integer.parseInt("" + firstDig + secondDig + thirdDig) * multDig);
+             finalValue = Math.round((double)(java.lang.Integer.parseInt("" + firstDig + secondDig + thirdDig) * multDig));
         
         }else{ //==6
             firstDig = value[Arrays.asList(colors).indexOf(Band1.getBackground())];
@@ -4903,9 +4915,26 @@ public class ElectoolApp extends javax.swing.JApplet {
             tolDig = tol[Arrays.asList(colors).indexOf(Band5.getBackground())];
             failDig = fail[Arrays.asList(colors).indexOf(Band6.getBackground())];
             
-            finalValue = (int)(java.lang.Integer.parseInt("" + firstDig + secondDig + thirdDig) * multDig);
+            finalValue = Math.round((double)(java.lang.Integer.parseInt("" + firstDig + secondDig + thirdDig) * multDig));
       
         }
+        
+        //showing the resistor values
+        if(finalValue <1000000 && finalValue >= 1000){
+            finalValue = finalValue /1000;
+            jlblValue.setText(""+finalValue+"K");
+        }else if(finalValue >= 1000000 && finalValue <= 1000000000){
+            finalValue = finalValue/1000000;
+            jlblValue.setText(""+finalValue+"M");
+        }else if(finalValue >= 1000000000){
+            finalValue = finalValue/1000000000;
+            jlblValue.setText(""+finalValue+"G");
+        }else{
+            jlblValue.setText(""+finalValue);
+        }
+        
+        tolerance.setText(tolDig+"%");
+        failR.setText(failDig+"%");
     }
     private void Band1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_Band1PropertyChange
         // TODO add your handling code here:
