@@ -135,7 +135,6 @@ public class ElectoolApp extends javax.swing.JApplet {
         ResButton = new javax.swing.JLabel();
         KButton = new javax.swing.JLabel();
         CalcButton = new javax.swing.JLabel();
-        DataButton = new javax.swing.JLabel();
         ViewPanel = new javax.swing.JPanel();
         About = new javax.swing.JPanel();
         ResCol = new javax.swing.JPanel();
@@ -403,7 +402,6 @@ public class ElectoolApp extends javax.swing.JApplet {
         jbtntanh1 = new javax.swing.JButton();
         jbtnsinh1 = new javax.swing.JButton();
         jbtnrund1 = new javax.swing.JButton();
-        comp = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -489,24 +487,6 @@ public class ElectoolApp extends javax.swing.JApplet {
         });
         Tools.add(CalcButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 390, 85, 85));
 
-        DataButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/doc1.png"))); // NOI18N
-        DataButton.setText("jLabel1");
-        DataButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                DataButtonMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                DataButtonMouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                DataButtonMousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                DataButtonMouseReleased(evt);
-            }
-        });
-        Tools.add(DataButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 510, 85, 85));
-
         Main.add(Tools, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
         ViewPanel.setBackground(new java.awt.Color(0, 0, 0));
@@ -515,7 +495,7 @@ public class ElectoolApp extends javax.swing.JApplet {
         ViewPanel.setPreferredSize(new java.awt.Dimension(1000, 300));
         ViewPanel.setLayout(new java.awt.CardLayout());
 
-        About.setBackground(new java.awt.Color(153, 255, 102));
+        About.setBackground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout AboutLayout = new javax.swing.GroupLayout(About);
         About.setLayout(AboutLayout);
@@ -2834,17 +2814,17 @@ public class ElectoolApp extends javax.swing.JApplet {
 
         ViewPanel.add(ResCol, "card2");
 
-        kMap.setBackground(new java.awt.Color(102, 102, 255));
+        kMap.setBackground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout kMapLayout = new javax.swing.GroupLayout(kMap);
         kMap.setLayout(kMapLayout);
         kMapLayout.setHorizontalGroup(
             kMapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 994, Short.MAX_VALUE)
+            .addGap(0, 890, Short.MAX_VALUE)
         );
         kMapLayout.setVerticalGroup(
             kMapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 692, Short.MAX_VALUE)
+            .addGap(0, 437, Short.MAX_VALUE)
         );
 
         ViewPanel.add(kMap, "card2");
@@ -3383,21 +3363,6 @@ public class ElectoolApp extends javax.swing.JApplet {
 
         ViewPanel.add(Calc, "card2");
 
-        comp.setBackground(new java.awt.Color(204, 204, 204));
-
-        javax.swing.GroupLayout compLayout = new javax.swing.GroupLayout(comp);
-        comp.setLayout(compLayout);
-        compLayout.setHorizontalGroup(
-            compLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        compLayout.setVerticalGroup(
-            compLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 692, Short.MAX_VALUE)
-        );
-
-        ViewPanel.add(comp, "card2");
-
         Main.add(ViewPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, -1, 560));
 
         jMenu1.setText("File");
@@ -3507,34 +3472,6 @@ public class ElectoolApp extends javax.swing.JApplet {
          ImageIcon calc1 = new ImageIcon(getClass().getResource("Images/calc1.png"));
         CalcButton.setIcon(calc1);
     }//GEN-LAST:event_CalcButtonMouseReleased
-
-    private void DataButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DataButtonMouseEntered
-        // TODO add your handling code here:
-        ImageIcon doc2 = new ImageIcon(getClass().getResource("Images/doc2.png"));
-        DataButton.setIcon(doc2);
-    }//GEN-LAST:event_DataButtonMouseEntered
-
-    private void DataButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DataButtonMouseExited
-        // TODO add your handling code here:
-        ImageIcon doc1 = new ImageIcon(getClass().getResource("Images/doc1.png"));
-        DataButton.setIcon(doc1);
-    }//GEN-LAST:event_DataButtonMouseExited
-
-    private void DataButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DataButtonMousePressed
-        // TODO add your handling code here:
-        ImageIcon doc3 = new ImageIcon(getClass().getResource("Images/doc3.png"));
-        DataButton.setIcon(doc3);
-        ViewPanel.removeAll();
-        ViewPanel.add(comp);
-        ViewPanel.repaint();
-        ViewPanel.revalidate();
-    }//GEN-LAST:event_DataButtonMousePressed
-
-    private void DataButtonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DataButtonMouseReleased
-        // TODO add your handling code here:
-        ImageIcon doc1 = new ImageIcon(getClass().getResource("Images/doc1.png"));
-        DataButton.setIcon(doc1);
-    }//GEN-LAST:event_DataButtonMouseReleased
 
     private void ResButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ResButtonMouseEntered
         // TODO add your handling code here:
@@ -5012,7 +4949,6 @@ public class ElectoolApp extends javax.swing.JApplet {
     private javax.swing.JLabel CalcButton;
     private javax.swing.JPanel CalcPanel;
     private javax.swing.JPanel ColoursPanel;
-    private javax.swing.JLabel DataButton;
     private javax.swing.JLabel InfoButton;
     private javax.swing.JLabel KButton;
     private javax.swing.JPanel Main;
@@ -5074,7 +5010,6 @@ public class ElectoolApp extends javax.swing.JApplet {
     private javax.swing.JButton brown46;
     private javax.swing.JButton brown47;
     private javax.swing.JButton brown48;
-    private javax.swing.JPanel comp;
     private javax.swing.JLabel failR;
     private javax.swing.JButton gold33;
     private javax.swing.JButton gold34;
