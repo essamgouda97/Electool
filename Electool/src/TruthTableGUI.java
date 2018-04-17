@@ -5,6 +5,7 @@ public class TruthTableGUI {
 	ArrayList<EquationVariables> variables = new ArrayList<>();
 	ArrayList<Object> equation;
 	ArrayList<Object> temp;
+        String test = "";
 	
 	public TruthTableGUI(ArrayList<EquationVariables> vars, ArrayList<Object> theEquation){
 		variables = vars;
@@ -16,12 +17,15 @@ public class TruthTableGUI {
 	 * It goes through every possible binary combination for the variables, and calls parseEquation()
 	 * for each one. If parseEquation returns false, the program stops executing
 	 */
-	public void constructTable(){
+	public String constructTable(){
 		//prints out the top row of the truth table
+               // String test = "";
 		for (int i = variables.size()-1; i >= 0 ; i--){
 			System.out.print(" | " + variables.get(i).getName());
+                        this.test+=(" | " + variables.get(i).getName());
 		}
 		System.out.println(" || Output");
+               this.test+=" || Output\n";
 		
 		//Goes through every possible combination of values for the variables and prints them
 		for (int i = 1; i < Math.pow(2, variables.size())+1; i++){
@@ -38,14 +42,23 @@ public class TruthTableGUI {
 					variables.get(m).setState();
 				}
 				System.out.print(" | " + (variables.get(m).getState() ? 1 : 0));
+                                this.test+=(" | " + (variables.get(m).getState() ? 1 : 0));
 			}
 			System.out.print(" || ");
+                        this.test+=" || ";
 			//attempts to parse the equation for the current variable states.
 			//If it fails, end the program
 			if (!parseEquation()){
-				return;
+                                variables.clear();
+                                equation.clear();
+                                temp.clear();
+				return this.test;
 			}
 		}
+                 variables.clear();
+                 equation.clear();
+                 temp.clear();
+                return this.test;
 	}
 	
 	public void invertVal(int pos){
@@ -119,6 +132,7 @@ public class TruthTableGUI {
 		}
 		//prints out the solution in the last column of the truth table
 		System.out.println(temp.get(temp.size()-1));
+                this.test+=((temp.get(temp.size()-1)) + "\n");
 		return true;
 	}
 	
@@ -128,6 +142,7 @@ public class TruthTableGUI {
 	private boolean fail(){
 		System.out.println();
 		System.out.println("Invalid String");
+                this.test += "\n Invalid input \n Please use only characters from a to z \n Please only use *,+ and ! symbols\n";
 		return false;
 	}
 }

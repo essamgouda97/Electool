@@ -16,6 +16,9 @@ import javax.swing.JFrame;
 import java.awt.Color;
 import java.util.Arrays;
 import java.util.ArrayList;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 
 
@@ -365,6 +368,8 @@ public class ElectoolApp extends javax.swing.JApplet {
         tTable = new javax.swing.JPanel();
         boolEqn = new javax.swing.JTextField();
         Confirm = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tResult = new javax.swing.JTextArea();
         Calc = new javax.swing.JPanel();
         CalcPanel = new javax.swing.JPanel();
         jbtnminus = new javax.swing.JButton();
@@ -2822,23 +2827,38 @@ public class ElectoolApp extends javax.swing.JApplet {
 
         tTable.setBackground(new java.awt.Color(0, 0, 0));
 
-        Confirm.setText("jButton1");
+        Confirm.setText("Confirm");
         Confirm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ConfirmActionPerformed(evt);
             }
         });
 
+        tResult.setEditable(false);
+        tResult.setBackground(new java.awt.Color(0, 0, 0));
+        tResult.setColumns(20);
+        tResult.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        tResult.setForeground(new java.awt.Color(255, 255, 255));
+        tResult.setRows(5);
+        tResult.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jScrollPane1.setViewportView(tResult);
+
         javax.swing.GroupLayout tTableLayout = new javax.swing.GroupLayout(tTable);
         tTable.setLayout(tTableLayout);
         tTableLayout.setHorizontalGroup(
             tTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(tTableLayout.createSequentialGroup()
-                .addGap(294, 294, 294)
-                .addComponent(boolEqn, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
-                .addComponent(Confirm)
-                .addContainerGap(181, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tTableLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(tTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(tTableLayout.createSequentialGroup()
+                        .addGap(294, 294, 294)
+                        .addComponent(boolEqn, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35)
+                        .addComponent(Confirm))
+                    .addGroup(tTableLayout.createSequentialGroup()
+                        .addGap(138, 138, 138)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 644, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(212, 212, 212))
         );
         tTableLayout.setVerticalGroup(
             tTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2847,7 +2867,9 @@ public class ElectoolApp extends javax.swing.JApplet {
                 .addGroup(tTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(boolEqn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Confirm))
-                .addContainerGap(352, Short.MAX_VALUE))
+                .addGap(31, 31, 31)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28))
         );
 
         ViewPanel.add(tTable, "card2");
@@ -4929,6 +4951,7 @@ public class ElectoolApp extends javax.swing.JApplet {
     private void ConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmActionPerformed
         // TODO add your handling code here:
                 String equation = boolEqn.getText();
+                tResult.setText("");
 		//removes spaces and upper-case letters from the user input
 		equation = equation.replaceAll(" ", "");
 		equation = equation.toLowerCase();
@@ -4965,10 +4988,17 @@ public class ElectoolApp extends javax.swing.JApplet {
 		if (variableArray.size() > 0){
 			//Creates an instance of the truth table class with the proper parameters
 			TruthTableGUI table = new TruthTableGUI(variableArray, equationArray);
-			table.constructTable();
+			//table.constructTable();
+                       // BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+                        String s = table.constructTable();
+                        System.out.println(s);
+                        tResult.setText(s);
 		}else{
 			System.out.println("No variables found");
 		}
+                System.out.println(equation);
+                equation = "";
+                System.out.println(equation);
     }//GEN-LAST:event_ConfirmActionPerformed
 
     //=================================================================================
@@ -5128,6 +5158,7 @@ public class ElectoolApp extends javax.swing.JApplet {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbtn0;
     private javax.swing.JButton jbtn1;
     private javax.swing.JButton jbtn2;
@@ -5213,6 +5244,7 @@ public class ElectoolApp extends javax.swing.JApplet {
     private javax.swing.JButton silver38;
     private javax.swing.JButton silver39;
     private javax.swing.JLabel symbol;
+    private javax.swing.JTextArea tResult;
     private javax.swing.JPanel tTable;
     private javax.swing.JLabel text;
     private javax.swing.JLabel text2;
