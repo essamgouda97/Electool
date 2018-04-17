@@ -15,6 +15,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import java.awt.Color;
 import java.util.Arrays;
+import java.util.ArrayList;
 
 
 
@@ -39,6 +40,9 @@ public class ElectoolApp extends javax.swing.JApplet {
     double result;
     String operations;
     //private Object math;
+    
+    static ArrayList<EquationVariables> variableArray = new ArrayList<>();
+    static ArrayList<Object> equationArray = new ArrayList<>();
     
     //==============================================================
     
@@ -133,7 +137,7 @@ public class ElectoolApp extends javax.swing.JApplet {
         Tools = new javax.swing.JPanel();
         InfoButton = new javax.swing.JLabel();
         ResButton = new javax.swing.JLabel();
-        KButton = new javax.swing.JLabel();
+        TButton = new javax.swing.JLabel();
         CalcButton = new javax.swing.JLabel();
         ViewPanel = new javax.swing.JPanel();
         About = new javax.swing.JPanel();
@@ -358,7 +362,9 @@ public class ElectoolApp extends javax.swing.JApplet {
         tolerance = new javax.swing.JLabel();
         text2 = new javax.swing.JLabel();
         failR = new javax.swing.JLabel();
-        kMap = new javax.swing.JPanel();
+        tTable = new javax.swing.JPanel();
+        boolEqn = new javax.swing.JTextField();
+        Confirm = new javax.swing.JButton();
         Calc = new javax.swing.JPanel();
         CalcPanel = new javax.swing.JPanel();
         jbtnminus = new javax.swing.JButton();
@@ -451,23 +457,23 @@ public class ElectoolApp extends javax.swing.JApplet {
         });
         Tools.add(ResButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 85, 85));
 
-        KButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/K1.png"))); // NOI18N
-        KButton.setText("jLabel1");
-        KButton.addMouseListener(new java.awt.event.MouseAdapter() {
+        TButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/T1.png"))); // NOI18N
+        TButton.setText("jLabel1");
+        TButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                KButtonMouseEntered(evt);
+                TButtonMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                KButtonMouseExited(evt);
+                TButtonMouseExited(evt);
             }
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                KButtonMousePressed(evt);
+                TButtonMousePressed(evt);
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                KButtonMouseReleased(evt);
+                TButtonMouseReleased(evt);
             }
         });
-        Tools.add(KButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 270, 85, 85));
+        Tools.add(TButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 270, 85, 85));
 
         CalcButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/calc1.png"))); // NOI18N
         CalcButton.setText("jLabel1");
@@ -2814,20 +2820,37 @@ public class ElectoolApp extends javax.swing.JApplet {
 
         ViewPanel.add(ResCol, "card2");
 
-        kMap.setBackground(new java.awt.Color(0, 0, 0));
+        tTable.setBackground(new java.awt.Color(0, 0, 0));
 
-        javax.swing.GroupLayout kMapLayout = new javax.swing.GroupLayout(kMap);
-        kMap.setLayout(kMapLayout);
-        kMapLayout.setHorizontalGroup(
-            kMapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 890, Short.MAX_VALUE)
+        Confirm.setText("jButton1");
+        Confirm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ConfirmActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout tTableLayout = new javax.swing.GroupLayout(tTable);
+        tTable.setLayout(tTableLayout);
+        tTableLayout.setHorizontalGroup(
+            tTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tTableLayout.createSequentialGroup()
+                .addGap(294, 294, 294)
+                .addComponent(boolEqn, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
+                .addComponent(Confirm)
+                .addContainerGap(181, Short.MAX_VALUE))
         );
-        kMapLayout.setVerticalGroup(
-            kMapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 437, Short.MAX_VALUE)
+        tTableLayout.setVerticalGroup(
+            tTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tTableLayout.createSequentialGroup()
+                .addGap(47, 47, 47)
+                .addGroup(tTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(boolEqn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Confirm))
+                .addContainerGap(352, Short.MAX_VALUE))
         );
 
-        ViewPanel.add(kMap, "card2");
+        ViewPanel.add(tTable, "card2");
 
         Calc.setBackground(new java.awt.Color(0, 0, 0));
         Calc.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -3501,33 +3524,33 @@ public class ElectoolApp extends javax.swing.JApplet {
         ResButton.setIcon(res1);
     }//GEN-LAST:event_ResButtonMouseReleased
 
-    private void KButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KButtonMouseEntered
+    private void TButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TButtonMouseEntered
         // TODO add your handling code here:
-        ImageIcon k2 = new ImageIcon(getClass().getResource("Images/K2.png"));
-        KButton.setIcon(k2);
-    }//GEN-LAST:event_KButtonMouseEntered
+        ImageIcon t2 = new ImageIcon(getClass().getResource("Images/T2.png"));
+        TButton.setIcon(t2);
+    }//GEN-LAST:event_TButtonMouseEntered
 
-    private void KButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KButtonMouseExited
+    private void TButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TButtonMouseExited
         // TODO add your handling code here:
-        ImageIcon k1 = new ImageIcon(getClass().getResource("Images/K1.png"));
-        KButton.setIcon(k1);
-    }//GEN-LAST:event_KButtonMouseExited
+        ImageIcon t1 = new ImageIcon(getClass().getResource("Images/T1.png"));
+        TButton.setIcon(t1);
+    }//GEN-LAST:event_TButtonMouseExited
 
-    private void KButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KButtonMousePressed
+    private void TButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TButtonMousePressed
         // TODO add your handling code here:
-        ImageIcon k3 = new ImageIcon(getClass().getResource("Images/k3.png"));
-        KButton.setIcon(k3);
+        ImageIcon t3 = new ImageIcon(getClass().getResource("Images/T3.png"));
+        TButton.setIcon(t3);
         ViewPanel.removeAll();
-        ViewPanel.add(kMap);
+        ViewPanel.add(tTable);
         ViewPanel.repaint();
         ViewPanel.revalidate();
-    }//GEN-LAST:event_KButtonMousePressed
+    }//GEN-LAST:event_TButtonMousePressed
 
-    private void KButtonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KButtonMouseReleased
+    private void TButtonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TButtonMouseReleased
         // TODO add your handling code here:
-        ImageIcon k1 = new ImageIcon(getClass().getResource("Images/K1.png"));
-        KButton.setIcon(k1);
-    }//GEN-LAST:event_KButtonMouseReleased
+        ImageIcon t1 = new ImageIcon(getClass().getResource("Images/T1.png"));
+        TButton.setIcon(t1);
+    }//GEN-LAST:event_TButtonMouseReleased
 
     
     //===============================================================================
@@ -4903,6 +4926,51 @@ public class ElectoolApp extends javax.swing.JApplet {
         resValue();
     }//GEN-LAST:event_Band6PropertyChange
 
+    private void ConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmActionPerformed
+        // TODO add your handling code here:
+                String equation = boolEqn.getText();
+		//removes spaces and upper-case letters from the user input
+		equation = equation.replaceAll(" ", "");
+		equation = equation.toLowerCase();
+		int counter = 1;
+		//loops through the equation and stores all characters between a and z in a variable array.
+		for (int i = 0; i < equation.length();i++){
+			if (equation.charAt(i)>='a' && equation.charAt(i)<='z') {
+				boolean alreadyExists = false;
+				EquationVariables temp = new EquationVariables(equation.charAt(i),true, counter);
+				
+				//checks for duplicate letters and doesn't add them to the array twice
+				for (EquationVariables v : variableArray){
+					if (v.getName()==temp.getName()){
+						alreadyExists = true;
+						temp = v;
+					}
+				}
+				if (!alreadyExists){
+					variableArray.add(temp); 
+					//doubles the significant bit for each variable that is added
+					//First variable has 1, second has 2, third has 4, and so on
+					counter = counter*2;
+				}
+				
+				//stores the variable objects that are created in an equation array as well
+				equationArray.add(temp);
+			}else{
+				//any non-letter characters get stored in an equation array
+				equationArray.add(equation.charAt(i));
+			}
+		}
+		//input.close();
+		
+		if (variableArray.size() > 0){
+			//Creates an instance of the truth table class with the proper parameters
+			TruthTableGUI table = new TruthTableGUI(variableArray, equationArray);
+			table.constructTable();
+		}else{
+			System.out.println("No variables found");
+		}
+    }//GEN-LAST:event_ConfirmActionPerformed
+
     //=================================================================================
     //================================================================================
     
@@ -4949,12 +5017,13 @@ public class ElectoolApp extends javax.swing.JApplet {
     private javax.swing.JLabel CalcButton;
     private javax.swing.JPanel CalcPanel;
     private javax.swing.JPanel ColoursPanel;
+    private javax.swing.JButton Confirm;
     private javax.swing.JLabel InfoButton;
-    private javax.swing.JLabel KButton;
     private javax.swing.JPanel Main;
     private javax.swing.JLabel ResButton;
     private javax.swing.JPanel ResCol;
     private javax.swing.JPanel Resistor;
+    private javax.swing.JLabel TButton;
     private javax.swing.JPanel Tools;
     private javax.swing.JPanel ViewPanel;
     private javax.swing.JButton band3;
@@ -4992,6 +5061,7 @@ public class ElectoolApp extends javax.swing.JApplet {
     private javax.swing.JButton blue46;
     private javax.swing.JButton blue47;
     private javax.swing.JButton blue48;
+    private javax.swing.JTextField boolEqn;
     private javax.swing.JButton brown13;
     private javax.swing.JButton brown14;
     private javax.swing.JButton brown15;
@@ -5099,7 +5169,6 @@ public class ElectoolApp extends javax.swing.JApplet {
     private javax.swing.JButton jbtntanh1;
     private javax.swing.JLabel jlblValue;
     private javax.swing.JTextField jtxtDisplay;
-    private javax.swing.JPanel kMap;
     private javax.swing.JButton none56;
     private javax.swing.JButton none57;
     private javax.swing.JButton none58;
@@ -5144,6 +5213,7 @@ public class ElectoolApp extends javax.swing.JApplet {
     private javax.swing.JButton silver38;
     private javax.swing.JButton silver39;
     private javax.swing.JLabel symbol;
+    private javax.swing.JPanel tTable;
     private javax.swing.JLabel text;
     private javax.swing.JLabel text2;
     private javax.swing.JLabel tolerance;
